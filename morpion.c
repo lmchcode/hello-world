@@ -41,12 +41,13 @@ void display (int **game)
 	}
 }
 
-//void play (char *str, int played, int i)
-//{
-//}
+void play (int **game, int played, int i)
+{
+	game[(played-1)/3][(played-1)%3] = ( i % 2 == 0) ? 3 : 2 ;
+}
 int dejavu (int** game, int played)
 {
-	return (game[played/3][played%3] !=0) ? 1 : 0;
+	return (game[(played-1)/3][(played-1)%3] !=0) ? 1 : 0;
 }
 
 int main (int argc, char** argv)
@@ -64,7 +65,7 @@ int main (int argc, char** argv)
 		{
 			if(dejavu(game, played) == 0)
 			{
-	//			play(game, played, i);
+				play(game, played, i);
 				i++;
 			}
 		}
