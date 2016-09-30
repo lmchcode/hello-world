@@ -25,6 +25,7 @@ void init (int*** game)
 }
 void display (int **game)
 {
+	system("clear");
 	int i = 0;
 	int j=  0;
 	while (i < 3)
@@ -50,6 +51,18 @@ int dejavu (int** game, int played)
 	return (game[(played-1)/3][(played-1)%3] !=0) ? 1 : 0;
 }
 
+void freegame(int **game)
+{
+int i = 0;
+int j = 0;
+
+	while ( i < 3)
+	{
+		free(game[i]);
+	i++;
+	}
+	free(game);
+}
 int main (int argc, char** argv)
 {
 	int **game = NULL;
@@ -70,10 +83,12 @@ int main (int argc, char** argv)
 			}
 		}
 	display(game);
+	
 	printf("%d", played);
 	}
+	freegame(game);
 
-//penser a ajouter un free reimplementer le jeu et ajouter la verification de solution
+//penser a ajouter un free reimplementer le jeu ajouter la verification de solution
 
 	return 0;
 }
