@@ -1,5 +1,6 @@
 # include <stdio.h>
 # include <stdlib.h>
+# include <SDL/SDL.h>
 void init (int*** game)
 {
   	int i = 0;
@@ -62,6 +63,13 @@ int j = 0;
 	i++;
 	}
 	free(game);
+}
+int won (int **game)
+{
+	int won = 0;
+	int i = 0;
+	int j = 0;
+
 }
 int main (int argc, char** argv)
 {
