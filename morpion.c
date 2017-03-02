@@ -1,5 +1,3 @@
-test
-
 # include <stdio.h>
 # include <stdlib.h>
 
@@ -36,7 +34,7 @@ void display (int **game)
 		while (j < 3)
 		{
 			(game[i][j] !=1 )? (game[i][j] == 3) ? printf("o"): printf("x") : printf(" ");;
-			(j == 2) ? : printf("|");
+				printf("|");
 			j++;
 		}
 	printf("\n");
@@ -68,22 +66,31 @@ int j = 0;
 }
 int won (int **game)
 {
-	int won = 0;
 	int i = 0;
-	while ( i < 3)
+	for (i = 0 ;  i < 3; i++)
 	{
-	won = ((game[i][0] == game[i][1] == game[i][2]) && game[i][0] != 1) ? 1 : 0 ;
-	i++;
+	 if (game[i][0] == game[i][1] && game[i][1] == game[i][2] && game[i][0] != 1) 
+	{
+		return 1;
+	}	
 	}
-	i = 0;
-	while ( i < 3)
+	for ( i =0;i < 3; i ++)
         {
-        won = ((game[0][i] == game[1][i] == game[2][i])&& game[i][0] != 1) ? 1 : 0 ;
-        i++;
+        if (game[0][i] == game[1][i] && game [1][i] == game[2][i] && game[0][i] != 1)
+	{
+		return 1;
+	}
         }
-	won =  ((game[0][0] == game[1][1] == game[2][2])&& game[1][1] != 1) ? 1 : 0 ;
-	won = ((game[0][2] == game[1][1] == game[2][0])&& game[1][1] != 1) ? 1 : 0 ;
-	
+	if (game[0][0] == game[1][1] && game[1][1]  == game[2][2] && game[1][1] != 1)
+	{
+		return 1;
+	}
+
+	if (game[0][2] == game[1][1] && game[1][1] == game[2][0]&& game[1][1] != 1)
+	{
+		return 1;
+	}
+	return 0;
 
 }
 int main (int argc, char** argv)
@@ -93,6 +100,7 @@ int main (int argc, char** argv)
 	int played = 0;
 	int i = 0;
 	display(game);
+	int winner = 0;
 	while (i < 9)
 	{
 	printf("quelle case jouer?");
@@ -107,14 +115,23 @@ int main (int argc, char** argv)
 		}
 		if (i > 4)
 		{
-		i = (won(game) == 1) ? i : 9 ;
+			if (won(game)  == 1)
+			{
+				winner = i%2;
+				i = 9;
+			}
 		}
+	
 	display(game);
-
+	}
+	
+	winner++;
+	if (won(game) == 1)
+	{
+		printf("player %d won\n", winner);
 	}
 	freegame(game);
 
-//penser a ajouter un free reimplementer le jeu ajouter la verification de solution
 
 	return 0;
 }
